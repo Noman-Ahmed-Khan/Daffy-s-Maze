@@ -367,10 +367,17 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 SRC_DIR = src
 OBJ_DIR = obj
 
+# Define all source files
+SRC_FILES = $(SRC_DIR)/main.cpp \
+            $(SRC_DIR)/core/Cell.cpp \
+            $(SRC_DIR)/core/DisjointSet.cpp \
+            $(SRC_DIR)/maze/Maze.cpp \
+            $(SRC_DIR)/ui/Button.cpp \
+            $(SRC_DIR)/ui/MazeSettings.cpp \
+            $(SRC_DIR)/ui/UI.cpp
+
 # Define all object files from source files
-SRC = $(call rwildcard, *.c, *.h)
-#OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-OBJS ?= main.c
+OBJS = $(SRC_FILES:.cpp=.o)
 
 # For Android platform we call a custom Makefile.Android
 ifeq ($(PLATFORM),PLATFORM_ANDROID)
@@ -392,8 +399,7 @@ $(PROJECT_NAME): $(OBJS)
 
 # Compile source files
 # NOTE: This pattern will compile every module defined on $(OBJS)
-#%.o: %.c
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+%.o: %.cpp
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM)
 
 # Clean everything
