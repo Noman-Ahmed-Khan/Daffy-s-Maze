@@ -1,3 +1,45 @@
+# Build outputs
 *.exe
-*.dsym
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
 main
+game
+*.dSYM
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.code-workspace
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+*.log
+
+# Documentation (keep only README.md)
+MODULARIZATION_SUMMARY.md
+CODE_DOCUMENTATION.md
+
+# DLL files in root (they're in lib/ directory)
+libgcc_s_dw2-1.dll
+libstdc++-6.dll
